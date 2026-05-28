@@ -23,7 +23,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
-
+ 
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -33,7 +33,7 @@ nav {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
-.nav-logo img { height: 44px; width: auto; }
+.nav-logo img { height: 44px; }
 .nav-links { display: flex; gap: 28px; }
 .nav-links a { color: var(--muted); font-size: 13px; font-weight: 500; text-decoration: none; transition: color 0.15s; }
 .nav-links a:hover { color: var(--navy); }
@@ -45,11 +45,11 @@ nav {
 }
 .nav-cta:hover { background: #002b7a; }
 @media(max-width:768px){ .nav-links { display:none; } }
-
+ 
 /* COLOUR BAR */
 .colour-bar { height: 4px; display: flex; position: fixed; top: 69px; left: 0; right: 0; z-index: 199; }
 .colour-bar span { flex: 1; }
-
+ 
 /* HERO */
 #hero {
   min-height: 100vh;
@@ -63,27 +63,58 @@ nav {
   overflow: hidden;
 }
 @media(max-width:900px){ #hero { grid-template-columns:1fr; padding: 110px 32px 64px; } }
-
+ 
 .hero-bg-dots {
   position: absolute; inset: 0; pointer-events: none;
   background-image: radial-gradient(circle, rgba(0,61,165,0.06) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
 }
+.hero-text {}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 24px;
+  animation: fadeUp 0.7s both;
+}
+.hero-eyebrow::before { content:''; width:20px; height:2px; background:var(--cyan); border-radius:2px; }
+ 
 .hero-h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(52px, 7vw, 90px);
   line-height: 0.95; letter-spacing: 0.5px;
   color: var(--dark); margin-bottom: 20px;
+  animation: fadeUp 0.7s 0.1s both;
 }
 .hero-h1 .c1 { color: var(--navy); display: block; }
 .hero-h1 .c2 { color: var(--cyan); display: block; }
 .hero-h1 .c3 { color: var(--magenta); display: block; }
-
+ 
 .hero-sub {
   font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 420px;
   margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.2s both;
 }
-.hero-visual { display: flex; flex-direction: column; gap: 16px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s both; }
+.btn-navy {
+  background: var(--navy); color: #fff;
+  font-size: 14px; font-weight: 700; padding: 13px 26px;
+  border-radius: 6px; text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-navy:hover { background: #002b7a; transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--navy);
+  font-size: 14px; font-weight: 600; padding: 13px 22px;
+  border-radius: 6px; border: 1.5px solid rgba(0,61,165,0.2);
+  text-decoration: none; transition: border-color 0.15s;
+}
+.btn-ghost:hover { border-color: var(--navy); }
+ 
+/* hero right: logo card */
+.hero-visual {
+  display: flex; flex-direction: column; gap: 16px;
+  animation: fadeLeft 0.8s 0.3s both;
+}
 .logo-card {
   background: var(--dark);
   border-radius: 20px;
@@ -100,30 +131,157 @@ nav {
   font-size: 12px; font-weight: 700; color: var(--dark);
 }
 .chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-/* REZERVUOTI STILIAI - LIKUSI DALIS TOKIA PAT */
+ 
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+@keyframes fadeLeft { from{opacity:0;transform:translateX(22px)} to{opacity:1;transform:none} }
+ 
+/* SECTION SHARED */
 .sw { max-width: 1080px; margin: 0 auto; padding: 88px 40px; }
-.sec-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-h2.sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4.5vw, 52px); color: var(--dark); margin-bottom: 14px; }
+@media(max-width:600px){ .sw { padding: 64px 24px; } }
+ 
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sec-label::before { content:''; width:18px; height:2px; background: var(--cyan); border-radius:2px; }
+.sec-label.m { color: var(--magenta); }
+.sec-label.m::before { background: var(--magenta); }
+.sec-label.g { color: var(--green); }
+.sec-label.g::before { background: var(--green); }
+ 
+h2.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 4.5vw, 52px);
+  line-height: 1.0; letter-spacing: 0.5px;
+  color: var(--dark); margin-bottom: 14px;
+}
 .sec-desc { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 520px; margin-bottom: 48px; }
+ 
+/* WHAT WE BUILT */
+#work { background: var(--white); }
 .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.work-card { border-radius: 14px; border: 1px solid var(--border); overflow: hidden; background: var(--white); transition: transform 0.2s; }
+.work-card {
+  border-radius: 14px; border: 1px solid var(--border);
+  overflow: hidden; background: var(--white);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.work-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,61,165,0.09); }
 .wc-top { height: 5px; }
 .wc-body { padding: 26px 24px; }
+.wc-icon { font-size: 22px; margin-bottom: 14px; }
+.work-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 0.5px; color: var(--dark); margin-bottom: 8px; }
+.work-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+ 
+/* VIDEO */
 #video { background: var(--dark); }
 .video-sw { max-width: 1080px; margin: 0 auto; padding: 88px 40px; }
-.vframe { position: relative; padding-bottom: 56.25%; border-radius: 14px; overflow: hidden; margin-top: 36px; }
+@media(max-width:600px){ .video-sw { padding: 64px 24px; } }
+ 
+.vframe {
+  position: relative; padding-bottom: 56.25%;
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  margin-top: 36px;
+}
 .vframe iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-#feedback { background: var(--white); padding-bottom: 100px; }
-.fb-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; }
-.submit-btn { width: 100%; background: var(--navy); color: #fff; padding: 14px; border: none; border-radius: 8px; cursor: pointer; }
-footer { background: var(--dark); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; }
+ 
+/* PROCESS */
+#process { background: var(--off); }
+.proc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.proc-step {
+  background: var(--white); border-radius: 14px;
+  border: 1px solid var(--border); padding: 28px 22px;
+  transition: transform 0.15s;
+}
+.proc-step:hover { transform: translateY(-3px); }
+.proc-bar { height: 3px; border-radius: 2px; margin-bottom: 20px; }
+.proc-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: rgba(0,61,165,0.07); line-height: 1; margin-bottom: 10px; }
+.proc-step h3 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+.proc-step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+ 
+/* FEEDBACK */
+#feedback { background: var(--white); }
+.fb-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; align-items: start; }
+@media(max-width:768px){ .fb-grid { grid-template-columns:1fr; gap:36px; } }
+ 
+.fb-left p.body { font-size: 15px; color: var(--muted); line-height: 1.75; margin-top: 16px; }
+.trust-list { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+.trust-row { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--muted); }
+.trust-icon { font-size: 15px; }
+ 
+.form-card {
+  background: var(--off); border: 1px solid var(--border);
+  border-radius: 16px; padding: 36px 32px;
+}
+@media(max-width:500px){ .form-card { padding: 22px 16px; } }
+.form-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.5px; color: var(--dark); margin-bottom: 24px; }
+ 
+.frow { margin-bottom: 18px; }
+.frow label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--dark); margin-bottom: 7px; }
+.frow select, .frow textarea {
+  width: 100%; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--dark);
+  background: var(--white); border: 1.5px solid #DDE3F0;
+  border-radius: 8px; padding: 11px 14px; outline: none;
+  transition: border-color 0.2s; appearance: auto;
+}
+.frow select:focus, .frow textarea:focus { border-color: var(--cyan); }
+.frow textarea { min-height: 110px; resize: vertical; }
+ 
+.stars { display: flex; gap: 6px; }
+.star-btn { font-size: 22px; background: none; border: none; cursor: pointer; filter: grayscale(1) opacity(0.25); transition: filter 0.15s, transform 0.1s; padding: 3px; }
+.star-btn.on, .star-btn:hover { filter: none; transform: scale(1.2); }
+ 
+.scale-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.sc-btn {
+  flex: 1; min-width: 36px; padding: 9px 4px;
+  font-size: 13px; font-weight: 700;
+  background: var(--white); border: 1.5px solid #DDE3F0;
+  border-radius: 6px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.sc-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.sc-btn.act { background: var(--navy); border-color: var(--navy); color: #fff; }
+ 
+.submit-btn {
+  width: 100%; background: var(--navy); color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 700; padding: 14px;
+  border: none; border-radius: 8px; cursor: pointer; margin-top: 6px;
+  transition: background 0.15s, transform 0.15s;
+}
+.submit-btn:hover { background: #002b7a; transform: translateY(-1px); }
+ 
+.ok-card {
+  display: none; text-align: center; padding: 24px;
+  background: #F0FFF6; border: 1.5px solid var(--green);
+  border-radius: 10px; margin-top: 14px;
+  font-size: 15px; font-weight: 600; color: #3a6b1a;
+}
+ 
+/* FOOTER */
+footer {
+  background: var(--dark); padding: 36px 40px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
 footer img { height: 36px; }
-.footer-right { font-size: 12px; color: rgba(255,255,255,0.25); text-align: right; }
+.footer-right { font-size: 12px; color: rgba(255,255,255,0.25); text-align: right; line-height: 1.6; }
+ 
+/* Reveal */
+.r { opacity:0; transform:translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+.r.d1 { transition-delay:0.08s; }
+.r.d2 { transition-delay:0.16s; }
+.r.d3 { transition-delay:0.24s; }
+.r.d4 { transition-delay:0.32s; }
+.r.vis { opacity:1; transform:none; }
 </style>
 </head>
 <body>
-
+ 
+<!-- COLOUR BAR -->
 <div class="colour-bar">
   <span style="background:var(--navy)"></span>
   <span style="background:var(--cyan)"></span>
@@ -131,10 +289,11 @@ footer img { height: 36px; }
   <span style="background:var(--green)"></span>
   <span style="background:var(--orange)"></span>
 </div>
-
+ 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="esnlogo.png" alt="ESN Vilnius Tech">
+    <img src="data:image/png;base64,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" alt="ESN Vilnius Tech">
   </div>
   <div class="nav-links">
     <a href="#work">Campaign</a>
@@ -144,23 +303,280 @@ footer img { height: 36px; }
   </div>
   <a href="#feedback" class="nav-cta">Leave Feedback</a>
 </nav>
-
+ 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg-dots"></div>
   <div class="hero-text">
+    <div class="hero-eyebrow">Campaign Presentation · 2025</div>
     <h1 class="hero-h1">
       <span class="c1">Your Campaign</span>
       <span class="c2">Built &</span>
       <span class="c3">Ready</span>
     </h1>
-    <p class="hero-sub">A full creative campaign made exclusively for ESN Vilnius Tech — designed to bring local students into the Mentor Programme.</p>
+    <p class="hero-sub">A full creative campaign made exclusively for ESN Vilnius Tech — designed to bring local students into the Mentor Programme and grow your community from within.</p>
+    <div class="hero-btns">
+      <a href="#video" class="btn-navy">Watch the Video ↓</a>
+      <a href="#work" class="btn-ghost">See Deliverables</a>
+    </div>
   </div>
   <div class="hero-visual">
     <div class="logo-card">
-      <img src="esnlogo.png" alt="ESN Vilnius Tech logo">
+      <img src="data:image/png;base64,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" alt="ESN Vilnius Tech logo">
+    </div>
+    <div class="hero-chips">
+      <div class="chip"><div class="chip-dot" style="background:var(--cyan)"></div>Campaign Video</div>
+      <div class="chip"><div class="chip-dot" style="background:var(--magenta)"></div>Visual Assets</div>
+      <div class="chip"><div class="chip-dot" style="background:var(--green)"></div>Copy & Messaging</div>
+      <div class="chip"><div class="chip-dot" style="background:var(--orange)"></div>Landing Page</div>
     </div>
   </div>
 </section>
-
+ 
+<!-- WHAT WE BUILT -->
+<section id="work">
+  <div class="sw">
+    <p class="sec-label r">What We Delivered</p>
+    <h2 class="sec-title r d1">The Full Campaign Package</h2>
+    <p class="sec-desc r d2">Every asset crafted around one goal: making Vilnius Tech students feel that ESN was built for them too.</p>
+    <div class="work-grid">
+      <div class="work-card r d1">
+        <div class="wc-top" style="background:var(--cyan)"></div>
+        <div class="wc-body">
+          <div class="wc-icon">🎬</div>
+          <h3>Campaign Video</h3>
+          <p>An authentic social video capturing the real mentor experience — engaging, fun, and built for social media.</p>
+        </div>
+      </div>
+      <div class="work-card r d2">
+        <div class="wc-top" style="background:var(--magenta)"></div>
+        <div class="wc-body">
+          <div class="wc-icon">📐</div>
+          <h3>Visual Identity Kit</h3>
+          <p>Story and feed templates, colour palette, and typography aligned to ESN global brand standards.</p>
+        </div>
+      </div>
+      <div class="work-card r d3">
+        <div class="wc-top" style="background:var(--green)"></div>
+        <div class="wc-body">
+          <div class="wc-icon">✍️</div>
+          <h3>Copy & Messaging</h3>
+          <p>Captions, hooks, and CTA copy — tested against student engagement patterns at Vilnius Tech.</p>
+        </div>
+      </div>
+      <div class="work-card r d4">
+        <div class="wc-top" style="background:var(--orange)"></div>
+        <div class="wc-body">
+          <div class="wc-icon">🌐</div>
+          <h3>Presentation Site</h3>
+          <p>This microsite — to present deliverables, host the video, and collect your structured feedback.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- VIDEO -->
+<section id="video">
+  <div class="video-sw">
+    <p class="sec-label m r">Campaign Film</p>
+    <h2 class="sec-title r d1" style="color:#fff">Watch the Final Cut</h2>
+    <p class="r d2" style="font-size:15px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:480px;">The campaign video — review carefully and share your thoughts in the feedback form below.</p>
+    <div class="vframe r d3">
+      <iframe
+        src="https://www.youtube.com/embed/GbfVaieFI6E"
+        title="ESN Vilnius Tech — Mentor Programme Campaign"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+ 
+<!-- PROCESS -->
+<section id="process">
+  <div class="sw">
+    <p class="sec-label g r">How We Got Here</p>
+    <h2 class="sec-title r d1">Our Creative Process</h2>
+    <p class="sec-desc r d2">From brief to final delivery — every step taken to build a campaign that resonates.</p>
+    <div class="proc-grid r d3">
+      <div class="proc-step">
+        <div class="proc-bar" style="background:var(--cyan)"></div>
+        <div class="proc-num">01</div>
+        <h3>Discovery</h3>
+        <p>Audience research, ESN brand audit, understanding the core challenge.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bar" style="background:var(--magenta)"></div>
+        <div class="proc-num">02</div>
+        <h3>Strategy</h3>
+        <p>Defining the core message and campaign direction for the target audience.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bar" style="background:var(--green)"></div>
+        <div class="proc-num">03</div>
+        <h3>Creative</h3>
+        <p>Scripting, storyboarding, design systems, and copy direction.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bar" style="background:var(--orange)"></div>
+        <div class="proc-num">04</div>
+        <h3>Production</h3>
+        <p>Filming, editing, and colour grading in ESN brand palette.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bar" style="background:var(--navy)"></div>
+        <div class="proc-num">05</div>
+        <h3>Delivery</h3>
+        <p>All assets packaged and ready for your review and approval.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FEEDBACK -->
+<section id="feedback">
+  <div class="sw">
+    <div class="fb-grid">
+      <div class="fb-left">
+        <p class="sec-label r">Your Turn</p>
+        <h2 class="sec-title r d1">Tell Us What You Think</h2>
+        <p class="body r d2">Your feedback directly shapes the final campaign. Every comment is reviewed by our creative team before sign-off.</p>
+        <div class="trust-list r d3">
+          <div class="trust-row"><span class="trust-icon">🔒</span> Responses are confidential</div>
+          <div class="trust-row"><span class="trust-icon">⚡</span> Takes less than 2 minutes</div>
+          <div class="trust-row"><span class="trust-icon">✉️</span> We respond within 24 hours</div>
+        </div>
+      </div>
+      <div class="form-card r d2">
+        <h3>Campaign Feedback</h3>
+        <!-- Replace YOUR_FORM_ID with your Formspree project ID -->
+        <form action="https://formspree.io/f/xkoekadk" method="POST" id="fb-form">
+ 
+          <div class="frow">
+            <label>Your Role in ESN</label>
+            <select name="role">
+              <option value="">— Select your role —</option>
+              <option>Board Member</option>
+              <option>Section President</option>
+              <option>Marketing Coordinator</option>
+              <option>Events Coordinator</option>
+              <option>Other</option>
+            </select>
+          </div>
+ 
+          <div class="frow">
+            <label>Overall Impression</label>
+            <div class="stars" id="stars">
+              <button class="star-btn" type="button" data-v="1">⭐</button>
+              <button class="star-btn" type="button" data-v="2">⭐</button>
+              <button class="star-btn" type="button" data-v="3">⭐</button>
+              <button class="star-btn" type="button" data-v="4">⭐</button>
+              <button class="star-btn" type="button" data-v="5">⭐</button>
+            </div>
+            <input type="hidden" name="overall_rating" id="star-val">
+          </div>
+ 
+          <div class="frow">
+            <label>Video Quality (1–5)</label>
+            <div class="scale-row" id="vq">
+              <button class="sc-btn" type="button" data-v="1">1</button>
+              <button class="sc-btn" type="button" data-v="2">2</button>
+              <button class="sc-btn" type="button" data-v="3">3</button>
+              <button class="sc-btn" type="button" data-v="4">4</button>
+              <button class="sc-btn" type="button" data-v="5">5</button>
+            </div>
+            <input type="hidden" name="video_quality" id="vq-val">
+          </div>
+ 
+          <div class="frow">
+            <label>On-Brand Alignment (1–5)</label>
+            <div class="scale-row" id="brand">
+              <button class="sc-btn" type="button" data-v="1">1</button>
+              <button class="sc-btn" type="button" data-v="2">2</button>
+              <button class="sc-btn" type="button" data-v="3">3</button>
+              <button class="sc-btn" type="button" data-v="4">4</button>
+              <button class="sc-btn" type="button" data-v="5">5</button>
+            </div>
+            <input type="hidden" name="brand_alignment" id="brand-val">
+          </div>
+ 
+          <div class="frow">
+            <label>Approval Status</label>
+            <select name="approval">
+              <option value="">— Select —</option>
+              <option>✅ Approved — ready to publish</option>
+              <option>🔄 Approved with minor revisions</option>
+              <option>⚠️ Needs significant changes</option>
+              <option>❌ Not approved — restart needed</option>
+            </select>
+          </div>
+ 
+          <div class="frow">
+            <label>Comments & Revision Notes</label>
+            <textarea name="comments" placeholder="What worked well? What needs changing? Any specific moments in the video to revisit?"></textarea>
+          </div>
+ 
+          <input type="hidden" name="_subject" value="[ESN Vilnius Tech] Campaign Feedback Received">
+          <input type="text" name="_gotcha" style="display:none">
+ 
+          <button type="submit" class="submit-btn">Submit Feedback →</button>
+          <div class="ok-card" id="ok-card">🎉 Thank you! Your feedback has been received. We'll be in touch within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <img src="data:image/png;base64,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" alt="ESN Vilnius Tech">
+  <div class="footer-right">
+    Campaign Presentation · 2025 · Confidential<br>
+    Prepared for ESN Vilnius Tech Leadership Board
+  </div>
+</footer>
+ 
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+ 
+document.querySelectorAll('#stars .star-btn').forEach((btn, i, all) => {
+  btn.addEventListener('click', () => {
+    const v = +btn.dataset.v;
+    document.getElementById('star-val').value = v;
+    all.forEach((b, j) => b.classList.toggle('on', j < v));
+  });
+});
+ 
+['vq','brand'].forEach(id => {
+  document.querySelectorAll('#'+id+' .sc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#'+id+' .sc-btn').forEach(b => b.classList.remove('act'));
+      btn.classList.add('act');
+      document.getElementById(id+'-val').value = btn.dataset.v;
+    });
+  });
+});
+ 
+document.getElementById('fb-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    const res = await fetch(e.target.action, {
+      method:'POST', body: new FormData(e.target), headers:{'Accept':'application/json'}
+    });
+    if(res.ok) {
+      e.target.reset();
+      document.querySelectorAll('.sc-btn,.star-btn').forEach(b => b.classList.remove('act','on'));
+      document.getElementById('ok-card').style.display = 'block';
+      btn.style.display = 'none';
+    } else { btn.textContent = 'Failed — please try again'; btn.disabled = false; }
+  } catch { btn.textContent = 'Connection error — try again'; btn.disabled = false; }
+});
+</script>
 </body>
 </html>
