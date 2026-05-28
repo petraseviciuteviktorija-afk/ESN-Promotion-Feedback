@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESN Vilnius Tech — Campaign Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan:    #00AEEF;
+  --magenta: #EC008C;
+  --green:   #7AC143;
+  --orange:  #F47920;
+  --navy:    #003DA5;
+  --white:   #FFFFFF;
+  --off:     #F4F6FB;
+  --dark:    #0A0E1A;
+  --muted:   #6B7899;
+  --border:  rgba(0,61,165,0.10);
+  --border-light: rgba(0,61,165,0.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 40px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo img { height: 44px; width: auto; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--muted); font-size: 13px; font-weight: 500; text-decoration: none; transition: color 0.15s; }
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  background: var(--navy); color: var(--white);
+  font-size: 13px; font-weight: 700; padding: 10px 22px;
+  border-radius: 6px; text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: #002b7a; }
+@media(max-width:768px){ .nav-links { display:none; } }
+
+/* COLOUR BAR */
+.colour-bar { height: 4px; display: flex; position: fixed; top: 69px; left: 0; right: 0; z-index: 199; }
+.colour-bar span { flex: 1; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  background: var(--off);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 110px 80px 80px;
+  gap: 64px;
+  position: relative;
+  overflow: hidden;
+}
+@media(max-width:900px){ #hero { grid-template-columns:1fr; padding: 110px 32px 64px; } }
+
+.hero-bg-dots {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,61,165,0.06) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 90px);
+  line-height: 0.95; letter-spacing: 0.5px;
+  color: var(--dark); margin-bottom: 20px;
+}
+.hero-h1 .c1 { color: var(--navy); display: block; }
+.hero-h1 .c2 { color: var(--cyan); display: block; }
+.hero-h1 .c3 { color: var(--magenta); display: block; }
+
+.hero-sub {
+  font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 420px;
+  margin-bottom: 36px;
+}
+.hero-visual { display: flex; flex-direction: column; gap: 16px; }
+.logo-card {
+  background: var(--dark);
+  border-radius: 20px;
+  padding: 48px 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.logo-card img { width: 100%; max-width: 340px; }
+.hero-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 100px; padding: 8px 16px;
+  font-size: 12px; font-weight: 700; color: var(--dark);
+}
+.chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* REZERVUOTI STILIAI - LIKUSI DALIS TOKIA PAT */
+.sw { max-width: 1080px; margin: 0 auto; padding: 88px 40px; }
+.sec-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+h2.sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4.5vw, 52px); color: var(--dark); margin-bottom: 14px; }
+.sec-desc { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 520px; margin-bottom: 48px; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.work-card { border-radius: 14px; border: 1px solid var(--border); overflow: hidden; background: var(--white); transition: transform 0.2s; }
+.wc-top { height: 5px; }
+.wc-body { padding: 26px 24px; }
+#video { background: var(--dark); }
+.video-sw { max-width: 1080px; margin: 0 auto; padding: 88px 40px; }
+.vframe { position: relative; padding-bottom: 56.25%; border-radius: 14px; overflow: hidden; margin-top: 36px; }
+.vframe iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+#feedback { background: var(--white); padding-bottom: 100px; }
+.fb-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; }
+.submit-btn { width: 100%; background: var(--navy); color: #fff; padding: 14px; border: none; border-radius: 8px; cursor: pointer; }
+footer { background: var(--dark); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; }
+footer img { height: 36px; }
+.footer-right { font-size: 12px; color: rgba(255,255,255,0.25); text-align: right; }
+</style>
+</head>
+<body>
+
+<div class="colour-bar">
+  <span style="background:var(--navy)"></span>
+  <span style="background:var(--cyan)"></span>
+  <span style="background:var(--magenta)"></span>
+  <span style="background:var(--green)"></span>
+  <span style="background:var(--orange)"></span>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="esnlogo.png" alt="ESN Vilnius Tech">
+  </div>
+  <div class="nav-links">
+    <a href="#work">Campaign</a>
+    <a href="#video">Video</a>
+    <a href="#process">Process</a>
+    <a href="#feedback">Feedback</a>
+  </div>
+  <a href="#feedback" class="nav-cta">Leave Feedback</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-text">
+    <h1 class="hero-h1">
+      <span class="c1">Your Campaign</span>
+      <span class="c2">Built &</span>
+      <span class="c3">Ready</span>
+    </h1>
+    <p class="hero-sub">A full creative campaign made exclusively for ESN Vilnius Tech — designed to bring local students into the Mentor Programme.</p>
+  </div>
+  <div class="hero-visual">
+    <div class="logo-card">
+      <img src="esnlogo.png" alt="ESN Vilnius Tech logo">
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
